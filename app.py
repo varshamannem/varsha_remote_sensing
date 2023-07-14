@@ -148,7 +148,9 @@ def analysis(analysis_type):
                 print("Plot plotted")
 
                 plot_layout = go.Layout(
-                       title='Forest Cover Using Random Forest'
+                       title='Forest Cover Using Random Forest',
+                       xaxis = dict(title = 'Time Range'),  # Add x-axis label
+                       yaxis = dict(title = 'Forest cover in sq.km')
                 )
                 fig = go.Figure(data=plot_data, layout=plot_layout) #using plotly to visualize the data
 
@@ -165,7 +167,7 @@ def analysis(analysis_type):
             res_end = res.sel(time=slice(time_range[0], time_range[1])).max(dim='time')
             print(time_range)
 
-            mean_res = res.mean(dim=['x', 'y'], skipna=True)	
+            mean_res = res.mean(dim=['latitude', 'longitude'], skipna=True)	
             mean_res_rounded = np.array(list(map(lambda x: round(x, 4), mean_res.values.tolist())))	
             	
             mean_res_rounded = mean_res_rounded[np.logical_not(np.isnan(mean_res_rounded))]

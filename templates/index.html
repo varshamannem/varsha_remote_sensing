@@ -299,8 +299,20 @@
                     graphDiv.id = 'graph-' + i;
                     console.log(graphDiv.id)
                     rf.appendChild(graphDiv);
+                    const layout = {
+                        xaxis: {
+                            title: {
+                                text: 'X-Axis Label'
+                            }
+                        },
+                        yaxis: {
+                            title: {
+                                text: 'Y-Axis Label'
+                            }
+                        }
+                    };
                     // Plot the graph inside the <div> element
-                    Plotly.newPlot(graphDiv.id, plotData);
+                    Plotly.newPlot(graphDiv.id, plotData,layout);
                     fetched.graph.push(cor)
                     scrollToDiv('card1');
                     hideLoader();
@@ -371,7 +383,7 @@
                 // with area name its color and its analysis type
                 img.innerHTML += `<div class ="card  mt-2" style="width:100%;"><div class="ms-3 mt-3"><svg width="40" height="20" style="margin-right: 10px;">
                     <rect width="40" height="20" style="fill: ${color}; stroke: ${color}; stroke-width: 5; fill-opacity: 0.2;"></rect>
-                </svg> ${data1.area_name}</div><img id="res_img" src="data:image/png;base64, ${data1.plot_url}" alt="graph"> <div>`
+                </svg> ${data1.area_name}(${data1.type})</div><img id="res_img" src="data:image/png;base64, ${data1.plot_url}" alt="graph"> <div>`
 
                     if(document.getElementById("type").value=='ndvi'){
                         fetched.ndvi.push(cor);
